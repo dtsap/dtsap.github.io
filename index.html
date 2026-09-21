@@ -1,9 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First GitHub Pages Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Workspace</title>
+    <style>
+        /* Modern CSS Reset & Variable Tokens */
+        :root {
+            --bg-color: #fbfaf7;       /* Smooth, soft off-white background */
+            --text-main: #191919;      /* Deep obsidian for high readability */
+            --text-muted: #666666;     /* Subtle grey for secondary elements */
+            --accent: #10b981;         /* Forest accent color */
+            --border-color: #e5e5e0;   /* Delicate dividers */
+            --card-bg: #ffffff;        /* Pure white for foreground elements */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar navigation layout */
+        aside {
+            width: 260px;
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            display: none; /* Hidden on mobile */
+        }
+
+        @media (min-width: 768px) {
+            aside { display: block; }
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Main Content Workspace */
+        main {
+            flex: 1;
+            max-width: 800px;
+            padding: 3rem 2rem;
+            margin: 0 auto;
+        }
+
+        .meta-tag {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Grid Cards Section */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-color: #d1d1cb;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World! My site is officially live.</h1>
+
+    <!-- Left Navigation Sidebar -->
+    <aside>
+        <div class="logo">Anthropic Docs Style</div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Overview</a></li>
+            <li><a href="#">Quickstart Guide</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">Prompt Engineering</a></li>
+            <li><a href="#">Models & Pricing</a></li>
+        </ul>
+    </aside>
+
+    <!-- Center Main Content -->
+    <main>
+        <div class="meta-tag">Documentation</div>
+        <h1>Getting Started</h1>
+        <p>Welcome to your new developer console. This space is designed to help you quickly build, configure, and scale your application prototypes with minimal friction.</p>
+
+        <!-- Feature Cards Grid -->
+        <div class="grid">
+            <div class="card">
+                <h3>API Reference</h3>
+                <p>Explore endpoints, headers, and structural request payloads.</p>
+            </div>
+            <div class="card">
+                <h3>Prompt Workbench</h3>
+                <p>Test instructions and optimize parameters dynamically.</p>
+            </div>
+        </div>
+    </main>
+
 </body>
 </html>
