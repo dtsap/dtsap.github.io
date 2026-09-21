@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation Workspace</title>
+    <title>Workspace Dashboard</title>
     <style>
-        /* Modern CSS Reset & Variable Tokens */
         :root {
             --bg-color: #fbfaf7;       /* Smooth, soft off-white background */
-            --text-main: #191919;      /* Deep obsidian for high readability */
+            --text-main: #191919;      /* Deep dark grey for high readability */
             --text-muted: #666666;     /* Subtle grey for secondary elements */
-            --accent: #10b981;         /* Forest accent color */
+            --accent: #2563eb;         /* Modern blue accent color */
             --border-color: #e5e5e0;   /* Delicate dividers */
             --card-bg: #ffffff;        /* Pure white for foreground elements */
+            --sidebar-width: 260px;
         }
 
         * {
@@ -28,24 +28,38 @@
             line-height: 1.6;
             display: flex;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Sidebar navigation layout */
+        /* Sidebar Navigation Layout */
         aside {
-            width: 260px;
+            width: var(--sidebar-width);
             border-right: 1px solid var(--border-color);
             padding: 2rem 1.5rem;
-            display: none; /* Hidden on mobile */
+            background-color: var(--bg-color);
+            transition: transform 0.3s ease, margin-left 0.3s ease;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
         }
 
-        @media (min-width: 768px) {
-            aside { display: block; }
+        /* Collapsed Sidebar State */
+        body.sidebar-collapsed aside {
+            transform: translateX(calc(-1 * var(--sidebar-width)));
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
         }
 
         .logo {
             font-weight: 700;
             font-size: 1.1rem;
-            margin-bottom: 2rem;
             letter-spacing: -0.025em;
         }
 
@@ -62,11 +76,46 @@
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.2s ease;
+            display: block;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: var(--text-main);
             font-weight: 500;
+        }
+
+        /* Toggle Buttons */
+        .toggle-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            border-color: #d1d1cb;
+            color: var(--text-main);
+        }
+
+        /* Fixed button that appears when sidebar is hidden */
+        .floating-toggle {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 5;
+            display: none;
+        }
+
+        body.sidebar-collapsed .floating-toggle {
+            display: flex;
         }
 
         /* Main Content Workspace */
@@ -75,6 +124,17 @@
             max-width: 800px;
             padding: 3rem 2rem;
             margin: 0 auto;
+            transition: padding-left 0.3s ease;
+        }
+
+        /* Desktop spacing Adjustment when sidebar is visible */
+        @media (min-width: 1024px) {
+            body {
+                padding-left: var(--sidebar-width);
+            }
+            body.sidebar-collapsed {
+                padding-left: 0;
+            }
         }
 
         .meta-tag {
@@ -141,36 +201,59 @@
 </head>
 <body>
 
+    <!-- Floating menu button when sidebar is hidden -->
+    <button class="toggle-btn floating-toggle" id="openBtn">☰ Menu</button>
+
     <!-- Left Navigation Sidebar -->
-    <aside>
-        <div class="logo">Anthropic Docs Style</div>
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Workspace</div>
+            <button class="toggle-btn" id="closeBtn">✕ Close</button>
+        </div>
         <ul class="nav-links">
             <li><a href="#" class="active">Overview</a></li>
-            <li><a href="#">Quickstart Guide</a></li>
-            <li><a href="#">API Reference</a></li>
-            <li><a href="#">Prompt Engineering</a></li>
-            <li><a href="#">Models & Pricing</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Settings</a></li>
         </ul>
     </aside>
 
     <!-- Center Main Content -->
     <main>
-        <div class="meta-tag">Documentation</div>
-        <h1>Getting Started</h1>
-        <p>Welcome to your new developer console. This space is designed to help you quickly build, configure, and scale your application prototypes with minimal friction.</p>
+        <div class="meta-tag">Dashboard</div>
+        <h1>Project Space</h1>
+        <p>Welcome to your central project environment. Use this layout to easily customize text sections, display custom grids, or links to external files.</p>
 
         <!-- Feature Cards Grid -->
         <div class="grid">
             <div class="card">
-                <h3>API Reference</h3>
-                <p>Explore endpoints, headers, and structural request payloads.</p>
+                <h3>Documentation</h3>
+                <p>Read instructions, code snippets, and configuration variables.</p>
             </div>
             <div class="card">
-                <h3>Prompt Workbench</h3>
-                <p>Test instructions and optimize parameters dynamically.</p>
+                <h3>Settings Console</h3>
+                <p>Configure layouts, active profiles, and dashboard integrations.</p>
             </div>
         </div>
     </main>
+
+    <!-- Sidebar Collapse JavaScript Logic -->
+    <script>
+        const body = document.body;
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Close sidebar action
+        closeBtn.addEventListener('click', () => {
+            body.classList.add('sidebar-collapsed');
+        });
+
+        // Open sidebar action
+        openBtn.addEventListener('click', () => {
+            body.classList.remove('sidebar-collapsed');
+        });
+    </script>
 
 </body>
 </html>
