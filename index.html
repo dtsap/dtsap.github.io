@@ -63,35 +63,11 @@
             letter-spacing: -0.025em;
         }
 
-        .nav-links {
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            display: block;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        /* Toggle Buttons */
+        /* Base Toggle Style */
         .toggle-btn {
             background: none;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 6px 10px;
             cursor: pointer;
-            font-size: 0.85rem;
             color: var(--text-muted);
             background-color: var(--card-bg);
             display: flex;
@@ -105,12 +81,24 @@
             color: var(--text-main);
         }
 
-        /* Fixed button that appears when sidebar is hidden */
+        /* Circular Close Button (Only X) */
+        .close-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Floating menu button when sidebar is hidden */
         .floating-toggle {
             position: fixed;
             top: 1.5rem;
             left: 1.5rem;
             z-index: 5;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
             display: none;
         }
 
@@ -135,6 +123,27 @@
             body.sidebar-collapsed {
                 padding-left: 0;
             }
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            display: block;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            font-weight: 500;
         }
 
         .meta-tag {
@@ -208,7 +217,8 @@
     <aside id="sidebar">
         <div class="sidebar-header">
             <div class="logo">Workspace</div>
-            <button class="toggle-btn" id="closeBtn">✕ Close</button>
+            <!-- Clean, circular close button with just the letter ✕ -->
+            <button class="toggle-btn close-btn" id="closeBtn">✕</button>
         </div>
         <ul class="nav-links">
             <li><a href="#" class="active">Overview</a></li>
