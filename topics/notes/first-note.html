@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First note — Dimitrios Tsapnidis</title>
+  <meta name="description" content="A short sample note to show how a notes post looks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <button class="icon-btn floating-toggle" id="openBtn" aria-label="Open menu">☰</button>
+
+  <aside id="sidebar" aria-label="Site navigation">
+    <div class="sidebar-header">
+      <a class="logo" id="siteLogo" href="../../">dtsap</a>
+      <button class="icon-btn close-btn" id="closeBtn" aria-label="Close menu">✕</button>
+    </div>
+
+    <div class="nav-section">
+      <ul class="nav-links">
+        <li><a data-nav="home" href="../../">Home</a></li>
+        <li><a data-nav="about" href="../../about.html">About</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Topics</div>
+      <ul class="nav-links" id="topicsNav"></ul>
+    </div>
+  </aside>
+
+  <main>
+    <a class="back-link" href="./">← Notes</a>
+    <article>
+      <header class="article-header">
+        <div class="post-meta">
+          <a class="topic" href="./">Notes</a>
+          <time datetime="2026-03-20">20 Mar 2026</time>
+        </div>
+        <h1>First note</h1>
+        <p class="summary">A short sample note to show how a notes post looks.</p>
+      </header>
+      <div class="article-body">
+        <p>Notes are for shorter writing — half-formed ideas, links worth keeping, or one useful sentence from a longer day.</p>
+        <p>This file is a template. Replace the title, date, and body, then register the post in <code>topics.json</code> under the Notes topic.</p>
+      </div>
+    </article>
+  </main>
+
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>
