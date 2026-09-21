@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dimitrios Tsapnidis</title>
-  <meta name="description" content="Notes on engineering, systems, and whatever I am figuring out next.">
+  <title>Engineering — Dimitrios Tsapnidis</title>
+  <meta name="description" content="Building software, shipping systems, and the trade-offs along the way.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/site.css">
 </head>
 <body>
   <button class="icon-btn floating-toggle" id="openBtn" aria-label="Open menu">☰</button>
 
   <aside id="sidebar" aria-label="Site navigation">
     <div class="sidebar-header">
-      <a class="logo" id="siteLogo" href="./">dtsap</a>
+      <a class="logo" id="siteLogo" href="../../">dtsap</a>
       <button class="icon-btn close-btn" id="closeBtn" aria-label="Close menu">✕</button>
     </div>
 
     <div class="nav-section">
       <ul class="nav-links">
-        <li><a data-nav="home" href="./">Home</a></li>
-        <li><a data-nav="about" href="about.html">About</a></li>
+        <li><a data-nav="home" href="../../">Home</a></li>
+        <li><a data-nav="about" href="../../about.html">About</a></li>
       </ul>
     </div>
 
@@ -33,14 +33,15 @@
   </aside>
 
   <main>
-    <p class="page-kicker">Dimitrios Tsapnidis</p>
-    <h1 class="page-title">Writing about the work</h1>
-    <p class="page-lead">Notes on engineering, systems, and whatever I am figuring out next. Pick a topic from the menu, or start with the latest posts below.</p>
+    <a class="back-link" href="../../">← Home</a>
+    <p class="page-kicker">Topic</p>
+    <h1 class="page-title">Engineering</h1>
+    <p class="page-lead">Building software, shipping systems, and the trade-offs along the way.</p>
 
-    <p class="section-heading">Recent</p>
-    <ul class="post-list" id="postList"></ul>
+    <p class="section-heading">Posts</p>
+    <ul class="post-list" id="topicPostList" data-topic="engineering"></ul>
   </main>
 
-  <script src="assets/js/site.js"></script>
+  <script src="../../assets/js/site.js"></script>
 </body>
 </html>
