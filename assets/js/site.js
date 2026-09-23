@@ -141,6 +141,97 @@
     });
   }
 
+  function currentPostLocation() {
+    const path = window.location.pathname.replace(/\\/g, "/");
+    const match = path.match(/\/topics\/([^/]+)\/([^/]+?)(?:\.html)?\/?$/);
+    if (!match || match[2] === "index") return null;
+    return { topicSlug: match[1], slug: match[2] };
+  }
+
+  function markdownRenderer() {
+    const lib = window.marked;
+    if (!lib) return null;
+    if (typeof lib.parse === "function") return lib;
+    if (typeof lib === "function") return { parse: lib, setOptions: function () {} };
+    return null;
+  }
+
+  function renderMarkdownPost(data) {
+    const article = document.querySelector("[data-markdown-post]");
+    if (!article) return Promise.resolve();
+
+    const loc = currentPostLocation();
+    const postBody = document.getElementById("postBody");
+    if (!postBody) return Promise.resolve();
+
+    if (!loc) {
+      postBody.innerHTML =
+        '<p class="empty-state">Could not determine which post to load.</p>';
+      return Promise.resolve();
+    }
+
+    const topic =
+      data && data.topics
+        ? data.topics.find((t) => t.slug === loc.topicSlug)
+        : null;
+    const post =
+      topic && (topic.posts || []).find((p) => p.slug === loc.slug);
+
+    const back = document.getElementById("postBack");
+    const topicLink = document.getElementById("postTopic");
+    const dateEl = document.getElementById("postDate");
+    const titleEl = document.getElementById("postTitle");
+    const summaryEl = document.getElementById("postSummary");
+    const desc = document.querySelector('meta[name="description"]');
+
+    if (topic && post) {
+      if (back) back.textContent = "← " + topic.title;
+      if (topicLink) {
+        topicLink.textContent = topic.title;
+        topicLink.href = "./";
+      }
+      if (dateEl) {
+        dateEl.setAttribute("datetime", post.date);
+        dateEl.textContent = formatDate(post.date);
+      }
+      if (titleEl) titleEl.textContent = post.title;
+      if (summaryEl) {
+        if (post.summary) {
+          summaryEl.textContent = post.summary;
+        } else {
+          summaryEl.remove();
+        }
+      }
+      document.title = post.title + " — Dimitrios Tsapnidis";
+      if (desc) desc.setAttribute("content", post.summary || "");
+    }
+
+    const pageUrl = window.location.href.split("#")[0].split("?")[0];
+    const dir = pageUrl.replace(/\/[^/]*$/, "/");
+    const mdUrl = dir + loc.slug + ".md";
+
+    return fetch(mdUrl)
+      .then((r) => {
+        if (!r.ok) throw new Error("Failed to load " + loc.slug + ".md");
+        return r.text();
+      })
+      .then((md) => {
+        const renderer = markdownRenderer();
+        if (!renderer) {
+          throw new Error("Markdown renderer failed to load");
+        }
+        if (typeof renderer.setOptions === "function") {
+          renderer.setOptions({ gfm: true, breaks: false });
+        }
+        postBody.innerHTML = renderer.parse(md);
+      })
+      .catch((err) => {
+        console.error(err);
+        postBody.innerHTML =
+          '<p class="empty-state">Could not load this post’s Markdown file.</p>';
+      });
+  }
+
   if (window.matchMedia("(max-width: 1023px)").matches) {
     body.classList.add("sidebar-collapsed");
   }
@@ -174,7 +265,7 @@
   const logo = document.getElementById("siteLogo");
   if (logo) logo.href = root;
 
-  fetch(root + "topics.json")
+  const topicsPromise = fetch(root + "topics.json")
     .then((r) => {
       if (!r.ok) throw new Error("Failed to load topics.json");
       return r.json();
@@ -186,6 +277,7 @@
       if (logo && data.site && data.site.name) {
         logo.textContent = data.site.name;
       }
+      return data;
     })
     .catch((err) => {
       console.error(err);
@@ -193,5 +285,8 @@
         topicsNav.innerHTML =
           '<li><span class="empty-state">Could not load topics.</span></li>';
       }
+      return null;
     });
+
+  topicsPromise.then((data) => renderMarkdownPost(data));
 })();
