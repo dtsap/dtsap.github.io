@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Getting started with this blog — Dimitrios Tsapnidis</title>
-  <meta name="description" content="How this site is structured and how new topics and posts get added.">
+  <title>Loading… — Dimitrios Tsapnidis</title>
+  <meta name="description" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
@@ -33,27 +33,23 @@
   </aside>
 
   <main>
-    <a class="back-link" href="./">← Engineering</a>
-    <article>
+    <a class="back-link" id="postBack" href="./">← Back</a>
+    <article data-markdown-post>
       <header class="article-header">
         <div class="post-meta">
-          <a class="topic" href="./">Engineering</a>
-          <time datetime="2026-03-21">21 Mar 2026</time>
+          <a class="topic" id="postTopic" href="./"></a>
+          <time id="postDate" datetime=""></time>
         </div>
-        <h1>Getting started with this blog</h1>
-        <p class="summary">How this site is structured and how new topics and posts get added.</p>
+        <h1 id="postTitle"></h1>
+        <p class="summary" id="postSummary"></p>
       </header>
-      <div class="article-body">
-        <p>This site is a static blog on GitHub Pages. Topics are folders under <code>topics/</code>, and the sidebar reads them from <code>topics.json</code>.</p>
-        <h2>Adding a topic</h2>
-        <p>Create a folder such as <code>topics/infra/</code>, add an <code>index.html</code> for the topic landing page, then register the topic in <code>topics.json</code>.</p>
-        <h2>Adding a post</h2>
-        <p>Copy an existing post HTML file into the topic folder, edit the title and body, and add an entry under that topic’s <code>posts</code> array in <code>topics.json</code>. The home page and topic list update from that file.</p>
-        <p>That is the whole loop — no build step required.</p>
+      <div class="article-body" id="postBody">
+        <p class="empty-state">Loading…</p>
       </div>
     </article>
   </main>
 
-  <script src="../../assets/js/site.js"></script>
+  <script src="../../assets/js/marked.min.js?v=2"></script>
+  <script src="../../assets/js/site.js?v=2"></script>
 </body>
 </html>

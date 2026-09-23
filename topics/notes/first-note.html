@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First note — Dimitrios Tsapnidis</title>
-  <meta name="description" content="A short sample note to show how a notes post looks.">
+  <title>Loading… — Dimitrios Tsapnidis</title>
+  <meta name="description" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
@@ -33,23 +33,23 @@
   </aside>
 
   <main>
-    <a class="back-link" href="./">← Notes</a>
-    <article>
+    <a class="back-link" id="postBack" href="./">← Back</a>
+    <article data-markdown-post>
       <header class="article-header">
         <div class="post-meta">
-          <a class="topic" href="./">Notes</a>
-          <time datetime="2026-03-20">20 Mar 2026</time>
+          <a class="topic" id="postTopic" href="./"></a>
+          <time id="postDate" datetime=""></time>
         </div>
-        <h1>First note</h1>
-        <p class="summary">A short sample note to show how a notes post looks.</p>
+        <h1 id="postTitle"></h1>
+        <p class="summary" id="postSummary"></p>
       </header>
-      <div class="article-body">
-        <p>Notes are for shorter writing — half-formed ideas, links worth keeping, or one useful sentence from a longer day.</p>
-        <p>This file is a template. Replace the title, date, and body, then register the post in <code>topics.json</code> under the Notes topic.</p>
+      <div class="article-body" id="postBody">
+        <p class="empty-state">Loading…</p>
       </div>
     </article>
   </main>
 
-  <script src="../../assets/js/site.js"></script>
+  <script src="../../assets/js/marked.min.js?v=2"></script>
+  <script src="../../assets/js/site.js?v=2"></script>
 </body>
 </html>
