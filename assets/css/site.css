@@ -417,10 +417,21 @@ main {
 }
 
 .article-body blockquote {
-  margin: 0 0 1.15rem;
-  padding: 0.15rem 0 0.15rem 1rem;
+  margin: 1.35rem 0;
+  padding: 0.95rem 1.15rem;
   border-left: 3px solid var(--accent);
-  color: var(--muted);
+  background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface));
+  border-radius: 0 6px 6px 0;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.article-body blockquote p {
+  margin-bottom: 0;
+}
+
+.article-body blockquote p + p {
+  margin-top: 0.75rem;
 }
 
 .article-body hr {

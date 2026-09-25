@@ -19,6 +19,19 @@
       ]
     },
     {
+      "slug": "prompt-engineering",
+      "title": "Prompt Engineering",
+      "description": "Writing clearer prompts for LLMs.",
+      "posts": [
+        {
+          "slug": "prompt-engineering",
+          "title": "Clearer prompts, better answers",
+          "date": "2026-09-25",
+          "summary": "What a prompt is, and a simple pattern to write better ones."
+        }
+      ]
+    },
+    {
       "slug": "notes",
       "title": "Notes",
       "description": "Short observations, drafts, and working thoughts.",

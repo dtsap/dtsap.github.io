@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading… — Dimitrios Tsapnidis</title>
+  <meta name="description" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <button class="icon-btn floating-toggle" id="openBtn" aria-label="Open menu">☰</button>
+
+  <aside id="sidebar" aria-label="Site navigation">
+    <div class="sidebar-header">
+      <a class="logo" id="siteLogo" href="../../">dtsap</a>
+      <button class="icon-btn close-btn" id="closeBtn" aria-label="Close menu">✕</button>
+    </div>
+
+    <div class="nav-section">
+      <ul class="nav-links">
+        <li><a data-nav="home" href="../../">Home</a></li>
+        <li><a data-nav="about" href="../../about.html">About</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Topics</div>
+      <ul class="nav-links" id="topicsNav"></ul>
+    </div>
+  </aside>
+
+  <main>
+    <a class="back-link" id="postBack" href="./">← Back</a>
+    <article data-markdown-post>
+      <header class="article-header">
+        <div class="post-meta">
+          <a class="topic" id="postTopic" href="./"></a>
+          <time id="postDate" datetime=""></time>
+        </div>
+        <h1 id="postTitle"></h1>
+        <p class="summary" id="postSummary"></p>
+      </header>
+      <div class="article-body" id="postBody">
+        <p class="empty-state">Loading…</p>
+      </div>
+    </article>
+  </main>
+
+  <script src="../../assets/js/marked.min.js?v=2"></script>
+  <script src="../../assets/js/site.js?v=2"></script>
+</body>
+</html>
