@@ -156,6 +156,19 @@
     return null;
   }
 
+  function wrapMarkdownTables(root) {
+    if (!root) return;
+    root.querySelectorAll("table").forEach((table) => {
+      if (table.parentElement && table.parentElement.classList.contains("table-scroll")) {
+        return;
+      }
+      const wrap = document.createElement("div");
+      wrap.className = "table-scroll";
+      table.parentNode.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    });
+  }
+
   function renderMarkdownPost(data) {
     const article = document.querySelector("[data-markdown-post]");
     if (!article) return Promise.resolve();
@@ -224,6 +237,7 @@
           renderer.setOptions({ gfm: true, breaks: false });
         }
         postBody.innerHTML = renderer.parse(md);
+        wrapMarkdownTables(postBody);
       })
       .catch((err) => {
         console.error(err);
