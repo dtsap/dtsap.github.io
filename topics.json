@@ -6,19 +6,6 @@
   },
   "topics": [
     {
-      "slug": "engineering",
-      "title": "Engineering",
-      "description": "Building software, shipping systems, and the trade-offs along the way.",
-      "posts": [
-        {
-          "slug": "getting-started",
-          "title": "Getting started with this blog",
-          "date": "2026-03-21",
-          "summary": "How this site is structured and how new topics and posts get added."
-        }
-      ]
-    },
-    {
       "slug": "prompt-engineering",
       "title": "Prompt Engineering",
       "description": "Writing clearer prompts for LLMs.",
@@ -34,19 +21,6 @@
           "title": "Prompting Techniques",
           "date": "2026-09-25",
           "summary": "Techniques to improve your prompts."
-        }
-      ]
-    },
-    {
-      "slug": "notes",
-      "title": "Notes",
-      "description": "Short observations, drafts, and working thoughts.",
-      "posts": [
-        {
-          "slug": "first-note",
-          "title": "First note",
-          "date": "2026-03-20",
-          "summary": "A short sample note to show how a notes post looks."
         }
       ]
     }
