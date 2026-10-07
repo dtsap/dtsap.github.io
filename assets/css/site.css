@@ -1,6 +1,5 @@
 :root {
-  --bg: #e9eef2;
-  --bg-deep: #dfe6ec;
+  --bg: #ffffff;
   --ink: #141820;
   --muted: #5a6573;
   --accent: #0b5f56;
@@ -27,10 +26,7 @@ html {
 
 body {
   font-family: var(--font-ui);
-  background:
-    radial-gradient(120% 80% at 0% 0%, #f2f6f8 0%, transparent 55%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-  background-attachment: fixed;
+  background: #ffffff;
   color: var(--ink);
   line-height: 1.55;
   display: flex;
