@@ -271,6 +271,10 @@
         heading.textContent = "References";
         const list = document.createElement("div");
         list.innerHTML = renderer.parse(body);
+        list.querySelectorAll("a").forEach((a) => {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        });
         section.appendChild(heading);
         section.appendChild(list);
         postBody.appendChild(section);
