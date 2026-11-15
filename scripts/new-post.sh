@@ -35,6 +35,7 @@ DIR="$ROOT/topics/$TOPIC"
 INDEX="$DIR/index.html"
 MD="$DIR/$SLUG.md"
 HTML="$DIR/$SLUG.html"
+REFS="$DIR/$SLUG.references.md"
 CREATED_TOPIC=0
 
 if [[ -z "$TOPIC_TITLE" ]]; then
@@ -68,8 +69,8 @@ if [[ ! -f "$INDEX" ]]; then
   echo "Created topics/$TOPIC/index.html  ← topic landing page (lists posts)"
 fi
 
-if [[ -e "$MD" || -e "$HTML" ]]; then
-  echo "Post already exists: topics/$TOPIC/$SLUG.{md,html}"
+if [[ -e "$MD" || -e "$HTML" || -e "$REFS" ]]; then
+  echo "Post already exists: topics/$TOPIC/$SLUG.{md,html,references.md}"
   exit 1
 fi
 
@@ -79,6 +80,12 @@ Write your post in Markdown here.
 ## Section
 
 Body text, \`inline code\`, and lists all work.
+EOF
+
+cat >"$REFS" <<'EOF'
+<!-- One reference per line. The site lists these at the end of the article.
+- [Title](https://example.com). Author, year. Why this source is cited.
+-->
 EOF
 
 cp "$ROOT/scripts/templates/post.html" "$HTML"
@@ -123,8 +130,9 @@ print("created_topic=" + ("1" if created_topic else "0"))
 PY
 
 echo "Created:"
-echo "  topics/$TOPIC/$SLUG.md      ← write the body here"
-echo "  topics/$TOPIC/$SLUG.html    ← shell (no edits needed)"
+echo "  topics/$TOPIC/$SLUG.md              ← write the body here"
+echo "  topics/$TOPIC/$SLUG.references.md   ← one source per line; listed at the end"
+echo "  topics/$TOPIC/$SLUG.html            ← shell (no edits needed)"
 echo "  topics.json                 ← registered topic/post"
 echo
 echo "Topic index (topics/$TOPIC/index.html) is the landing page for this topic."

@@ -440,6 +440,20 @@ main {
   font-weight: 600;
 }
 
+.article-body .references {
+  margin-top: 2.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.article-body .references h2 {
+  margin-top: 1.25rem;
+}
+
+.article-body .references li {
+  margin-bottom: 0.7rem;
+}
+
 .article-body .table-scroll {
   margin: 1.35rem 0 1.5rem;
   overflow: auto;

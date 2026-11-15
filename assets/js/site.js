@@ -238,11 +238,45 @@
         }
         postBody.innerHTML = renderer.parse(md);
         wrapMarkdownTables(postBody);
+        return appendReferences(postBody, loc, renderer);
       })
       .catch((err) => {
         console.error(err);
         postBody.innerHTML =
           '<p class="empty-state">Could not load this post’s Markdown file.</p>';
+      });
+  }
+
+  function referenceBody(md) {
+    return md.replace(/<!--[\s\S]*?-->/g, "").trim();
+  }
+
+  function appendReferences(postBody, loc, renderer) {
+    const pageUrl = window.location.href.split("#")[0].split("?")[0];
+    const dir = pageUrl.replace(/\/[^/]*$/, "/");
+    return fetch(dir + loc.slug + ".references.md")
+      .then((r) => {
+        if (r.status === 404) return "";
+        if (!r.ok) throw new Error("Failed to load " + loc.slug + ".references.md");
+        return r.text();
+      })
+      .then((md) => {
+        const body = referenceBody(md);
+        if (!body) return;
+        const section = document.createElement("section");
+        section.className = "references";
+        section.setAttribute("aria-label", "References");
+        const heading = document.createElement("h2");
+        heading.id = "references";
+        heading.textContent = "References";
+        const list = document.createElement("div");
+        list.innerHTML = renderer.parse(body);
+        section.appendChild(heading);
+        section.appendChild(list);
+        postBody.appendChild(section);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 

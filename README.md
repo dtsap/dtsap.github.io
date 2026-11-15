@@ -15,11 +15,22 @@ Personal blog for Dimitrios Tsapnidis, hosted on GitHub Pages.
   topics/
     <topic-slug>/
       index.html          Topic landing page
-      <post-slug>.md      Post body (write here)
-      <post-slug>.html    Thin shell that loads and renders the .md
+      <post-slug>.md              Post body (write here)
+      <post-slug>.references.md   Sources (one list item per line; listed at the end)
+      <post-slug>.html            Thin shell that loads and renders the .md
 ```
 
 Post titles, dates, and summaries live in `topics.json`. The article body is plain Markdown in the matching `.md` file.
+
+## References
+
+Sources for a post go in `topics/<topic>/<slug>.references.md`, not in the article body. One Markdown list item per source:
+
+```markdown
+- [Title](https://example.com). Author, year. Why this source is cited.
+```
+
+The page loads that file and lists it under **References** at the end of the article. A missing file, or a file that is only the HTML comment `make new-post` writes, shows nothing. An HTML comment in the file is not rendered.
 
 ## Add a topic + post
 
@@ -33,7 +44,7 @@ That will:
 
 1. Create `topics/my-topic/` if needed
 2. Create `topics/my-topic/index.html` — the **topic landing page**. It is not a hand-written list; it has an empty `#topicPostList` and `site.js` fills it from `topics.json` (newest first).
-3. Create `new-post.md` (write here) and `new-post.html` (shell that renders the Markdown)
+3. Create `new-post.md` (write here), `new-post.references.md` (sources), and `new-post.html` (shell that renders the Markdown)
 4. Register the topic and post in `topics.json`
 
 Optional nicer titles:
